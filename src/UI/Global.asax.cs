@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
+using FluentValidation.Mvc;
+using UI.Configuration;
+using UI.Helpers.Filters;
 
 namespace UI
 {
@@ -15,6 +14,7 @@ namespace UI
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new RavenSessionAttribute());
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -35,6 +35,12 @@ namespace UI
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            StructureMapBootstrapper.Bootstrap();
+            AutomapperBootstrapper.Bootstrap();
+            ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerFactory());
+
+            FluentValidationModelValidatorProvider.Configure();
         }
     }
 }
