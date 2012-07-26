@@ -1,0 +1,35 @@
+﻿@model UI.ViewModels.Menu.CreateEditMenu
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Menu", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.ValidationSummary(true,"Unable to add, please correct all the errors and try again.")
+    <fieldset>
+        <legend>Menu</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.File)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.File, new { type = "file" })
+            @Html.ValidationMessageFor(model => model.File)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

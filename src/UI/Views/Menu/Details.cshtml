@@ -1,0 +1,23 @@
+﻿@model UI.ViewModels.Menu.ShowMenu
+
+<h2>Details</h2>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Menu</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.ActionLink(Model.Name, "ShowFile", new { controller = "Menu", id = Model.Id })
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

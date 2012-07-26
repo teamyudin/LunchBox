@@ -1,0 +1,37 @@
+﻿@model UI.ViewModels.Menu.CreateEditMenu
+
+<h2>Menus - Add</h2>
+
+@using (Html.BeginForm("Edit", "Menu", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Menu</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.File)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.File, new { type = "file" })
+            @Html.ValidationMessageFor(model => model.File)
+        </div>
+        
+        @Html.HiddenFor(model => model.Id)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
